@@ -23,89 +23,90 @@
 	</style>
 </head>
 <body class="times">
-	<div class="page">
-		<h1>Manipulación de elementos</h1>
-		<div>
-			<h2>Con JQuery</h2>
-			$('selector'), siempre retorna una lista.
-			<h2>Con JavaScript</h2>
-			<pre>
-				<code class="javascript">
-document.querySelector(selector) //retorna UN solo elemento
-document.querySelectorAll(selector) //retorna una lista de elementos
-document.getElementById('#id') //busca por id (requiere símbolo #)
-				</code>
-			</pre>
-		</div>
 
-	</div>
 	<div class="page">
 		<h1>JavaScript Básico</h1>
 		<div class=" ">
 
 			<h2>Variables</h2>
 			<pre><code class="javascript">
-	//Asignación de valores a variables
-	var cantidad = 10
-	var nombre = "Dean"
-	var fecha = new Date()
-	var persona = {
-		nombre: "Sarah",
-		edad:35
-	};
-			</code></pre>
-		</div>
+				//Asignación de valores a variables
+				var cantidad = 10
+				var nombre = "Dean"
+				var fecha = new Date()
+				var persona = {
+				nombre: "Sarah",
+				edad:35
+			};
+		</code></pre>
+	</div>
 
 	<div class="">
 
 		<h2>Objetos</h2>
 		<pre>
 			<code class="javascript">
-	//Objetos (Agrupan propiedades en una variable)
-	var persona = {
-		nombre: "Sarah",
-		edad:35
-	};
+				//Objetos (Agrupan propiedades en una variable)
+				var persona = {
+				nombre: "Sarah",
+				edad:35
+			};
 
-	//Mostrando información a la consola
-	console.log(persona.nombre)
-	//Output: Sarah
-	console.log(persona.edad)
-	//Output: 35
+			//Mostrando información a la consola
+			console.log(persona.nombre)
+			//Output: Sarah
+			console.log(persona.edad)
+			//Output: 35
 		</code></pre>
 	</div>
 
-<div class=" ">
-	<h2>Listas de Elementos</h2>
-	<pre><code class="javascript">
-	var listaNumeros = [5,4,3,2,1]
+	<div class=" ">
+		<h2>Listas de Elementos</h2>
+		<pre><code class="javascript">
+			var listaNumeros = [5,4,3,2,1]
 
-	var listaPersonas = [
-	  {nombre:"Sarah", edad:35},
-	  {nombre:"Vicky", edad:25}
-	]
-	</code></pre>
-</div>
+			var listaPersonas = [
+			{nombre:"Sarah", edad:35},
+			{nombre:"Vicky", edad:25}
+			]
+		</code></pre>
+	</div>
 
-<div>
-	<h2>Operaciones sobre listas</h2>
-	<p> Buscar un elemento (forma 1)
-	  Vamos a buscar la persona cuyo nombre es Sarah
-	  Para ello recorremos el array</p>
-	<pre><code class="javascript">
+	<div>
+		<h2>Operaciones sobre listas</h2>
+		<p> Buscar un elemento (forma 1)
+			Vamos a buscar la persona cuyo nombre es Sarah
+			Para ello recorremos el array</p>
+			<pre><code class="javascript">
 
-	var persona
+				var persona
 
-	for (var i = 0; i < listaPersonas.length; i++) {
-		if (listaPersonas[i].nombre === "Sarah" ) {
-			persona = listaPersonas[i]
+				for (var i = 0; i < listaPersonas.length; i++) {
+				if (listaPersonas[i].nombre === "Sarah" ) {
+				persona = listaPersonas[i]
+			}
 		}
-	}
 
 	</code></pre>
 </div>
 
 <a href="https://www.cheatography.com/davechild/cheat-sheets/javascript/">Consultar una hoja de referencia completa aquí</a>
+</div>
+<div class="page">
+	<h1>Manipulación de elementos</h1>
+	<div>
+		<h2>Con JQuery</h2>
+		$('selector'), siempre retorna una lista.
+		<h2>Con JavaScript</h2>
+		<pre>
+			<code class="javascript">
+				document.querySelector(selector) //retorna UN solo elemento
+				document.querySelectorAll(selector) //retorna una lista de elementos
+				document.getElementById('#id') //busca por id (requiere símbolo #)
+			</code>
+		</pre>
+	</div>
+
 </div>
 <div class="page"></div>
 </body>
