@@ -5,11 +5,12 @@
 	<title>Guía para talleres Desarrollo Web</title>
 	<link rel="stylesheet" href="tachyons.css">
 	<link rel="stylesheet" href="highlight/styles/zenburn.css">
+	<link rel="stylesheet" href="animate.css">
 	<script src="highlight/highlight.pack.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 	<style>
 		body {
-			font-size: 18px;
+			font-size: 22px;
 		}
 		.page {
 			width:100vw;
@@ -18,10 +19,18 @@
 			padding:2rem;
 		}
 		code {
-			max-width: 800px;
+			
+		}
+
+		.cuadro {
+			width: 50px;
+			height: 50px;
+			background-color: red;
+			display: inline-block;
 		}
 	</style>
 </head>
+<!-- OJO: No formatear el código, porque se dañan los snippets! -->
 <body class="times pa4">
 
 <h1>JavaScript Básico</h1>
@@ -34,12 +43,12 @@
 	var nombre = "Dean"
 	var fecha = new Date()
 	var persona = {
-	nombre: "Sarah",
+		nombre: "Sarah",
 		edad:35
 	};
 </code></pre>
 
-<div class="">
+<div class="copy">
 
 	<h2>Objetos</h2>
 	<pre>
@@ -58,23 +67,25 @@
 	</code></pre>
 </div>
 
-	<div class=" ">
-		<h2>Listas de Elementos</h2>
-		<pre><code class="javascript">
-	var listaNumeros = [5,4,3,2,1]
-	var listaPersonas = [
-		{nombre:"Sarah", edad:35},
-		{nombre:"Vicky", edad:25}
-	]
-		</code></pre>
-	</div>
+<div class=" ">
+	<h2 class='title'>Listas de Elementos</h2>
+	<pre><code class="javascript">
+var listaNumeros = [5,4,3,2,1]
+var listaPersonas = [
+	{nombre:"Sarah", edad:35},
+	{nombre:"Vicky", edad:25}
+]
+	</code></pre>
+</div>
 
-	<div>
-		<h2>Operaciones sobre listas</h2>
-		<p> Buscar un elemento (forma 1)
-			Vamos a buscar la persona cuyo nombre es Sarah
-			Para ello recorremos el array</p>
-			<pre><code class="javascript">
+<div>
+	<h2>Operaciones sobre listas</h2>
+	<p class="copy measure"> Buscar un elemento (forma 1)
+		Vamos a buscar la persona cuyo nombre es Sarah
+		Para ello recorremos el array</p>
+
+		<pre>
+			<code class="javascript">
 
 	var persona
 
@@ -84,25 +95,223 @@
 		}
 	}
 
+		</code>
+	</pre>
+</div>
+
+<div>
+	<h2>Operaciones sobre listas</h2>
+	<p class="copy measure"> Buscar un elemento (forma 1)
+		Vamos a buscar la persona cuyo nombre es Sarah
+		Para ello recorremos el array</p>
+		<pre><code class="javascript">
+
+/* Forma 2: Usando el método "find"
+   Recibe una función con la cual se evalúan los elementos de la lista.
+   Si la función retorna true para un elemento. Este es retornado.
+*/
+
+var persona = listaPersonas.find( function(elemento){
+
+	if (elemento.nombre === "Sarah") {
+		return true;
+	} else {
+		return false
+	}
+})
+
 	</code></pre>
 </div>
 
-<a href="https://www.cheatography.com/davechild/cheat-sheets/javascript/">Consultar una hoja de referencia completa aquí</a>
-</div>
-<h1>Manipulación de elementos</h1>
 <div>
-	<h2>Con JQuery</h2>
-	$('selector'), siempre retorna una lista.
-	<h2>Con JavaScript</h2>
+	<h2>Agregando/Eliminando elementos</h2>
+	<pre>
+		<code class="javascript">
+//Métodos útiles de las listas:
+//Agregar elemento
+listaPersonas.push(otraPersona)
+
+//Eliminar el último elemento ( y retornarlo por si queremos guardarlo)
+var borrado = listaNumeros.pop()
+
+//splice(indiceInicial, cantidadABorrar, elementoNuevo1, elementoNuevo2....)
+//Eliminar 2 elementos empezando por el indice 3 ( es decir en la 4 posición)
+listaPersonas.splice(3,2)
+
+//También se puede usar splice para agregar elementos en una posición
+//Para ello se pasa 0 en la cantidadABorrar
+listaPersonas.splice(2,0,otraPersona)
+		</code>
+	</pre>
+</div>
+
+<div>
+	<h2>Temporizadores (setTimeout, setInterval)</h2>
+	<pre>
+		<code class="javascript">
+	
+setTimeout(function () {
+  console.log("Esta función se ejecutará en 1 segundo, una sola vez")
+}, 1000)
+
+setInterval(function () {
+  console.log("Esta función se ejecutada cada segundo. Indefinidamente")
+}, 1000)
+		</code>
+	</pre>
+
+</div>
+
+<a class="link f2 tc" href="https://www.cheatography.com/davechild/cheat-sheets/javascript/">Consultar una hoja de referencia completa aquí</a>
+
+<div>
+	<h2>Manipulación de elementos Con JavaScript</h2>
+
+	<p class="copy measure">
+		Con JavaScript podemos cambiar los elementos de la página.
+		Este proceso tiene 2 pasos
+		
+		<ul>
+			<li>1. Obtener el o los elementos</li>
+			<li>2. Modificar sus atributos</li>
+		</ul>
+		
+		Podemos obtener los elementos de varias maneras.
+		<ul>
+			<li>Por su identificador único (id)</li>
+			<li>Por una de las clases que tengan (atributo class)</li>
+			<li>Por su etiqueta (div,span,table...)</li>
+		</ul>
+		
+	</p>
 	<pre>
 		<code class="javascript">
 	document.querySelector(selector) //retorna UN solo elemento
 	document.querySelectorAll(selector) //retorna una lista de elementos
 	document.getElementById('#id') //busca por id (requiere símbolo #)
-		</code>
+	
+	//Podemos agregar o quitar clases a un nodo:
+	//En este caso agregamos la clase 'activo' al elemento con id=noticias
+	document.querySelector('#noticias').classList.add('activo')
+
+	//Podemos guardar el elemento en una variable primero
+	//para hacer el código más corto
+	var elementoNoticias = document.querySelector('#noticias')
+	elementoNoticias.classList.add('activo')
+	elementoNoticias.classList.add('animar')
+
+	/* Nota: Tengan en cuenta que querySelectorAll retorna una lista de elementos. Por lo cual no podemos usar classList directamente sobre el resultado, debemos recorrer la lista o acceder a un elemento específico.
+	
+	Ejemplo: document.querySelectorAll('.encabezado')[0]
+	*/
+	</code>
 	</pre>
 </div>
 
+<div>
 
+	<h2>Manipulación de elementos Con JQuery</h2>
+	
+	<p class="copy measure">
+		JQuery es una librería que facilita las modificaciones
+		a los elementos de la página.
+		Era muy popular cuando los navegadores tenían grandes incompatibilidades. Sigue siendo usada pero las mismas operaciones
+		se pueden realizar con JavaScript puro.
+	</p>
+
+		<pre>
+			<code class="javascript">
+	$('selector')//siempre retorna una lista.
+	$('#miElemento').addClass('animar')
+	$('#miElemento').addClass('animar')
+			</code>
+		</pre>
+</div>
+
+<div>
+	<h2> Cómo animar elementos de la página?</h2>
+	<p class="copy measure">
+		El proceso de animar puede dividirse en 3 pasos
+		<ul>
+			<li>1. Obtener el elemento usando algún selector apropiado</li>
+			<li>2. Seleccionar la animación de CSS</li>
+			<li>3. Agregar la clase correspondiente al elemento</li>
+		</ul>
+		Podemos descargar el archivo CSS de la librería 'animate.css'.
+		Esta ya tiene una gran cantidad de animaciones listas para usar.
+		<a href="https://daneden.github.io/animate.css/">Demo de Animate.css</a>
+	</p>
+		<pre><code class="javascript">
+	setTimeout(function () {
+		document.querySelector('#cuadro1').classList.add('bounce')
+		document.querySelector('#cuadro1').classList.add('animated')
+	},500)
+
+	setTimeout(function () {
+		document.querySelector('#cuadro2').classList.add('bounce')
+		document.querySelector('#cuadro2').classList.add('animated')
+	},1000)
+
+	setTimeout(function () {
+		document.querySelector('#cuadro3').classList.add('bounce')
+		document.querySelector('#cuadro3').classList.add('animated')
+	},1500)
+
+	setTimeout(function () {
+		document.querySelector('#cuadro4').classList.add('bounce')
+		document.querySelector('#cuadro4').classList.add('animated')
+	},2000)
+		</code></pre>
+	<div class="cuadros pa4 tc">
+		<h3>Animar cuadros</h3>
+		<div id="cuadro1" class="cuadro"></div>
+		<div id="cuadro2" class="cuadro"></div>
+		<div id="cuadro3" class="cuadro"></div>
+		<div id="cuadro4" class="cuadro"></div>
+		<p>
+			<button class="" id="btnAnimarCuadros">Animar</button>
+		</p>
+
+	</div>
+</div>
+
+<script type='text/javascript'>
+
+	function resetearCuadros(){
+		var elementos = document.querySelectorAll('.cuadro')
+		for (var i = 0; i<elementos.length; i++) {
+			var elem = elementos[i]
+			elem.classList.remove('bounce')
+		}
+	}
+
+	function animarCuadros(){
+		console.log('animando cuadros')
+		resetearCuadros();
+		setTimeout(function () {
+			document.querySelector('#cuadro1').classList.add('bounce')
+			document.querySelector('#cuadro1').classList.add('animated')
+		},500)
+
+		setTimeout(function () {
+			document.querySelector('#cuadro2').classList.add('bounce')
+			document.querySelector('#cuadro2').classList.add('animated')
+		},1000)
+
+		setTimeout(function () {
+			document.querySelector('#cuadro3').classList.add('bounce')
+			document.querySelector('#cuadro3').classList.add('animated')
+		},1500)
+
+		setTimeout(function () {
+			document.querySelector('#cuadro4').classList.add('bounce')
+			document.querySelector('#cuadro4').classList.add('animated')
+		},2000)
+	
+	}
+
+	document.querySelector('#btnAnimarCuadros').addEventListener('click', animarCuadros)
+
+</script>
 </body>
 </html>

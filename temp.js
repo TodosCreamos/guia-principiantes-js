@@ -83,3 +83,25 @@ listaPersonas.splice(3,2)
 //También se puede usar splice para agregar elementos en una posición
 //Para ello se pasa 0 en la cantidadABorrar
 listaPersonas.splice(2,0,otraPersona)
+
+
+setTimeout(function () {
+	console.log("Esta función se ejecutará en 1 segundo, una sola vez")
+}, 1000)
+
+setInterval(function () {
+	console.log("Esta función se ejecutada cada segundo. Indefinidamente")
+}, 1000)
+
+
+//Queremos animar los cuadros de manera secuencial
+//Una manera de hacerlo es con 3 setTimeouts uno dentro de otro
+//Usamos la variable i para modificar el tiempo de cada temporizador
+
+var elementos = document.querySelectorAll('.cuadro')
+for (var i = 0 ; i < elementos.length; i++) {
+	var elem = elementos[i]
+	setTimeout(function () {
+		elem.classList.add('bounce')
+	},i*1000)
+}
