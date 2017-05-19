@@ -1,5 +1,5 @@
 
-Ver aquí: [hugozap.github.io/guia-principiantes-js](hugozap.github.io/guia-principiantes-js)
+Ver aquí: [http://hugozap.github.io/guia-principiantes-js](http://hugozap.github.io/guia-principiantes-js)
 
 ## Descripción
 
